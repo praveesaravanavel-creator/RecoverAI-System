@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>RecoverAI - Patient Dashboard</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #eef6ff;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .header {
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #1769aa;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #666;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 18px;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .card h2 {
+            color: #1769aa;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .status {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 18px;
+            border-radius: 12px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 18px;
+            border: none;
+            border-radius: 10px;
+            background: #1769aa;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0d4f82;
+        }
+
+        .doctor-btn {
+            background: #455a64;
+        }
+
+        .doctor-btn:hover {
+            background: #263238;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>🏥 RecoverAI</h1>
+
+        <p class="subtitle">
+            Personalized Recovery Monitoring
+        </p>
+
+    </div>
+
+
+    <!-- Recovery Status -->
+
+    <div class="card">
+
+        <h2>📊 Recovery Status</h2>
+
+        <p>
+            Monitor your recovery progress and receive
+            early alerts when attention may be needed.
+        </p>
+
+        <div class="status">
+            🟢 Recovery monitoring is active
+        </div>
+
+    </div>
+
+
+    <!-- Daily Check-in -->
+
+    <div class="card">
+
+        <h2>📝 Daily Recovery Check-in</h2>
+
+        <p>
+            Record your pain, sleep, energy, symptoms
+            and medication status.
+        </p>
+
+        <button onclick="window.location.href='/checkin'">
+            Start Daily Check-in
+        </button>
+
+    </div>
+
+
+    <!-- AI Prediction -->
+
+    <div class="card">
+
+        <h2>🤖 AI Recovery Prediction</h2>
+
+        <p>
+            RecoverAI analyzes your check-in information
+            and provides a recovery risk level.
+        </p>
+
+        <button onclick="window.location.href='/prediction'">
+            View AI Prediction
+        </button>
+
+    </div>
+
+
+    <!-- Doctor Dashboard -->
+
+    <div class="card">
+
+        <h2>👨‍⚕️ Doctor Monitoring</h2>
+
+        <p>
+            Healthcare professionals can monitor recovery
+            trends and early alerts.
+        </p>
+
+        <button class="doctor-btn"
+                onclick="window.location.href='/doctor'">
+            Open Doctor Dashboard
+        </button>
+
+    </div>
+
+</div>
+
+</body>
+</html>

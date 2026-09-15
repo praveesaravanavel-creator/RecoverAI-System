@@ -1,0 +1,119 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RecoverAI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #eef6ff;
+        }
+
+        .container {
+            width: 380px;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .icon {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: #1769aa;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 10px;
+            background: #1769aa;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0d4f82;
+        }
+
+        .doctor {
+            background: #4caf50;
+        }
+
+        .doctor:hover {
+            background: #388e3c;
+        }
+
+        .footer {
+            margin-top: 25px;
+            font-size: 13px;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="icon">🏥</div>
+
+        <h1>RecoverAI</h1>
+
+        <p class="subtitle">
+            Personalized Recovery Monitoring
+        </p>
+
+        <button onclick="window.location.href='/dashboard'">
+    Patient Login
+</button>
+
+        <button onclick="window.location.href='/doctor'">
+    Doctor Login
+</button>
+
+        <p class="footer">
+            Track your recovery • Get early alerts • Stay safe
+        </p>
+
+    </div>
+
+    <script>
+        function patientLogin() {
+            alert("Patient Login Selected");
+        }
+
+        function doctorLogin() {
+            alert("Doctor Login Selected");
+        }
+    </script>
+
+</body>
+</html>
+```

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>RecoverAI - Doctor Dashboard</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 30px;
+            background: #eef6ff;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        h1 {
+            color: #1769aa;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .card h2 {
+            color: #1769aa;
+            margin-bottom: 15px;
+        }
+
+        .info {
+            line-height: 1.8;
+            color: #444;
+        }
+
+        .risk {
+            padding: 18px;
+            border-radius: 10px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        .high {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .attention {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        .normal {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .alert {
+            background: #fff3e0;
+            color: #e65100;
+            padding: 18px;
+            border-radius: 10px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .trend {
+            background: #f8fbff;
+            padding: 15px;
+            margin-top: 12px;
+            border-radius: 10px;
+            border-left: 5px solid #1769aa;
+        }
+
+        canvas {
+            margin-top: 15px;
+            max-height: 350px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #1769aa;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0d4f82;
+        }
+
+    </style>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🏥 RecoverAI</h1>
+
+    <p class="subtitle">
+        Doctor Dashboard - Patient Recovery Monitoring
+    </p>
+
+
+    <!-- Patient Information -->
+
+    <div class="card">
+
+        <h2>👤 Patient Information</h2>
+
+        <div class="info">
+
+            <p>
+                <b>Patient Name:</b>
+                Demo Patient
+            </p>
+
+            <p>
+                <b>Latest Check-in:</b>
+                Today
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Current Recovery Status -->
+
+    <div class="card">
+
+        <h2>📊 Current Recovery Status</h2>
+
+        {% if patient %}
+
+            {% if patient.status == "High Risk" %}
+
+                <div class="risk high">
+                    🔴 Current Risk Level: High Risk
+                </div>
+
+                <div class="alert">
+                    🚨 Early Alert: Patient recovery needs attention.
+                </div>
+
+            {% elif patient.status == "Needs Attention" %}
+
+                <div class="risk attention">
+                    🟡 Current Risk Level: Needs Attention
+                </div>
+
+                <div class="alert">
+                    ⚠️ Patient recovery needs closer monitoring.
+                </div>
+
+            {% else %}
+
+                <div class="risk normal">
+                    🟢 Current Risk Level: Normal Recovery
+                </div>
+
+            {% endif %}
+
+        {% else %}
+
+            <div class="risk normal">
+                📊 No patient check-in data available yet.
+            </div>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- Latest Recovery Details -->
+
+    {% if patient %}
+
+    <div class="card">
+
+        <h2>🩺 Latest Recovery Details</h2>
+
+        <div class="info">
+
+            <p>
+                <b>Pain Level:</b>
+                {{ patient.pain }} / 10
+            </p>
+
+            <p>
+                <b>Sleep Quality:</b>
+                {{ patient.sleep }}
+            </p>
+
+            <p>
+                <b>Energy Level:</b>
+                {{ patient.energy }}
+            </p>
+
+            <p>
+                <b>Symptoms:</b>
+                {{ patient.symptoms }}
+            </p>
+
+            <p>
+                <b>Medication:</b>
+                {{ patient.medication }}
+            </p>
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+
+    <!-- Recovery Progress Chart -->
+
+    <div class="card">
+
+        <h2>📈 Recovery Progress Chart</h2>
+
+        <canvas id="recoveryChart"></canvas>
+
+    </div>
+
+
+    <!-- Recovery History -->
+
+    <div class="card">
+
+        <h2>📋 Recovery History</h2>
+
+        {% if history %}
+
+            {% for record in history %}
+
+                <div class="trend">
+
+                    <p>
+                        <b>Check-in {{ record[0] }}</b>
+                    </p>
+
+                    <p>
+                        Pain Level:
+                        {{ record[1] }}/10
+                    </p>
+
+                    <p>
+                        Sleep:
+                        {{ record[2] }}
+                    </p>
+
+                    <p>
+                        Energy:
+                        {{ record[3] }}
+                    </p>
+
+                    <p>
+                        Symptoms:
+                        {{ record[4] }}
+                    </p>
+
+                    <p>
+                        Medication:
+                        {{ record[5] }}
+                    </p>
+
+                    <p>
+                        <b>Risk:</b>
+                        {{ record[6] }}
+                    </p>
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p class="info">
+                No recovery check-ins available yet.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <button onclick="window.location.href='/dashboard'">
+        Back to Patient Dashboard
+    </button>
+
+
+</div>
+
+
+<!-- Chart Script -->
+
+<script>
+
+    const labels = [
+        {% for record in history %}
+            "Check-in {{ record[0] }}"{% if not loop.last %},{% endif %}
+        {% endfor %}
+    ];
+
+    const painData = [
+        {% for record in history %}
+            {{ record[1] }}{% if not loop.last %},{% endif %}
+        {% endfor %}
+    ];
+
+
+    const ctx = document.getElementById('recoveryChart');
+
+    new Chart(ctx, {
+
+        type: 'line',
+
+        data: {
+
+            labels: labels,
+
+            datasets: [{
+
+                label: 'Pain Level',
+
+                data: painData,
+
+                borderWidth: 3,
+
+                tension: 0.3,
+
+                fill: false
+
+            }]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            scales: {
+
+                y: {
+
+                    beginAtZero: true,
+
+                    max: 10,
+
+                    title: {
+
+                        display: true,
+
+                        text: 'Pain Level (0 - 10)'
+
+                    }
+
+                },
+
+                x: {
+
+                    title: {
+
+                        display: true,
+
+                        text: 'Recovery Check-ins'
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    });
+
+</script>
+
+</body>
+</html>

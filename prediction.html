@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RecoverAI - Recovery Prediction</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 30px;
+            background: #eef6ff;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #1769aa;
+            font-size: 32px;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            margin-bottom: 25px;
+        }
+
+        .status {
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .normal {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .attention {
+            background: #fff8e1;
+            color: #f57c00;
+        }
+
+        .highrisk {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .status h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .status p {
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .alert {
+            margin-top: 20px;
+            padding: 18px;
+            border-radius: 12px;
+            font-weight: bold;
+            line-height: 1.5;
+        }
+
+        .alert-normal {
+            background: #f1f8e9;
+            color: #33691e;
+        }
+
+        .alert-attention {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        .alert-highrisk {
+            background: #fce4ec;
+            color: #b71c1c;
+        }
+
+        .info {
+            margin-top: 25px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 25px;
+            border: none;
+            border-radius: 10px;
+            background: #1769aa;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0d4f82;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🤖 RecoverAI</h1>
+
+    <p class="subtitle">
+        Personalized Recovery Prediction
+    </p>
+
+
+    {% if status == "Normal Recovery" %}
+
+        <div class="status normal">
+            <h2>🟢 Normal Recovery</h2>
+
+            <p>
+                Your recovery is progressing normally.
+            </p>
+        </div>
+
+        <div class="alert alert-normal">
+            ✅ Continue regular recovery monitoring.
+        </div>
+
+
+    {% elif status == "Needs Attention" %}
+
+        <div class="status attention">
+            <h2>🟡 Needs Attention</h2>
+
+            <p>
+                Your recovery needs closer monitoring.
+            </p>
+        </div>
+
+        <div class="alert alert-attention">
+            ⚠️ Please monitor your recovery closely
+            and follow your healthcare professional's advice.
+        </div>
+
+
+    {% elif status == "High Risk" %}
+
+        <div class="status highrisk">
+            <h2>🔴 High Risk</h2>
+
+            <p>
+                Your recovery shows warning signs that need attention.
+            </p>
+        </div>
+
+        <div class="alert alert-highrisk">
+            🚨 Early Alert: Your recovery needs attention.
+            Please contact your healthcare professional
+            for appropriate guidance.
+        </div>
+
+
+    {% else %}
+
+        <div class="status normal">
+            <h2>📊 Recovery Status</h2>
+
+            <p>
+                Submit your daily check-in to get a prediction.
+            </p>
+        </div>
+
+    {% endif %}
+
+
+    <div class="info">
+
+        <p>
+            This prediction is based on your recent recovery check-in.
+        </p>
+
+        <p>
+            RecoverAI is a monitoring and early-alert prototype,
+            not a medical diagnosis.
+        </p>
+
+    </div>
+
+
+    <button onclick="window.location.href='/dashboard'">
+        Back to Dashboard
+    </button>
+
+</div>
+
+</body>
+</html>

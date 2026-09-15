@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RecoverAI - Daily Check-in</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #eef6ff;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #1769aa;
+        }
+
+        label {
+            display: block;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 25px;
+            border: none;
+            border-radius: 10px;
+            background: #1769aa;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0d4f82;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📝 Daily Recovery Check-in</h1>
+
+    <p>Tell us how you feel today.</p>
+
+    <form action="/prediction" method="POST">
+
+        <label>Pain Level (0 - 10)</label>
+
+        <input
+            type="number"
+            name="pain"
+            min="0"
+            max="10"
+            placeholder="Enter pain level"
+            required
+        >
+
+        <label>Sleep Quality</label>
+
+        <select name="sleep" required>
+            <option value="">Select</option>
+            <option value="Good">Good</option>
+            <option value="Average">Average</option>
+            <option value="Poor">Poor</option>
+        </select>
+
+        <label>Energy Level</label>
+
+        <select name="energy" required>
+            <option value="">Select</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+        </select>
+
+        <label>Symptoms</label>
+
+        <input
+            type="text"
+            name="symptoms"
+            placeholder="Enter your symptoms"
+            required
+        >
+
+        <label>Medication Status</label>
+
+        <select name="medication" required>
+            <option value="">Select</option>
+            <option value="Taken">Taken</option>
+            <option value="Missed">Missed</option>
+        </select>
+
+        <button type="submit">
+            Submit Check-in
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>
